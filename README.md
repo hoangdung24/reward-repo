@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+## **MATERIAL**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> API_KEY = Api-Key ubc9FYnH.brSNHwzFxNIZgehgQosDArgFe70dfigA
+---
+## **ENDPOINT**
 
-## Available Scripts
+- Bài viết: https://member-intro.t-solution.vn/api/v2/pages/?type=blog.BlogDetailPage&fields=*&limit=3&is_on_homepage=true
+- Đăng ký quán: https://member-intro.t-solution.vn/api/v2/submissions/ 
+- Đăng ký nhận thông tin: https://member-intro.t-solution.vn/api/v2/subscribers/
 
-In the project directory, you can run:
+***Lưu ý: Luôn gửi API KEY khi thực hiện lệnh POST***
 
-### `npm start`
+> VD: { Authorization: "Api-Key ubc9FYnH.brSNHwzFxNIZgehgQosDArgFe70dfigA" }
+---
+## **REQUIREMENTS**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Sử dụng ReactJS để tạo ra trang landing page như trong liên kết bên dưới. Liên kết: https://reward-landing-page.vercel.app/
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Clone dự án từ trên git về. Sau khi thực hiện xong tạo một nhánh khác với cấu trúc dev-<tên người thực hiện> rồi push ngược lại lên git.
 
-### `npm test`
+- Tổng thể: Website phải responsive
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Navbar: Thanh navbar có chứa anchor để điều hướng tới các phần tương ứng trong trang. Khi điều hướng tới các phần trong trang yêu cầu scroll có hiệu ứng smooth.
 
-### `npm run build`
+- Thương hiệu liên kết: có thể dùng dumb data để triển khai.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Tin tức: fetch dữ liệu từ trên server với api như sau https://member-intro.t-solution.vn/api/v2/pages/?type=blog.BlogDetailPage&fields=*&limit=3&is_on_homepage=true
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Đăng ký quán: Xác thực dữ liệu ở những trường có dấu * Reset form sau khi thực hiện thành công Phần đính kèm không bắt buộc Thêm loading khi đang gửi dữ liệu lên server (Không bắt buộc) Chèn thông báo nếu gửi thành công hoặc thất bại.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Footer: Phần đăng ký nhận thông tin phải xác thực là email trước khi gửi lên server.
+---
+## **HINT**
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Có thể dùng bất kỳ thư viện UI nào để có thể hoàn thành giao diện. 
+- Có thể search google để trợ giúp trong quá trình thực hiện. 
+- Slider có thể tham khảo react-slick. 
+- Xử lý form có thể tham khảo react-form-hook. 
+- Fetch data có thể tham khảo axios.
