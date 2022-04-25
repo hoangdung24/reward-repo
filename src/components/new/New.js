@@ -1,7 +1,92 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import "../../style/new.style.scss";
 
 export default function New() {
+  const [data, setData] = useState([]);
+  const [showData, setshowData] = useState([]);
+  const soLuong = 3;
+  // let tong = data.length / 2;
+  console.log("render lai giao dien");
+  useEffect(() => {
+    layAPI();
+    // layAPI2();
+  }, []);
+
+  const layAPI = async () => {
+    try {
+      // const tongAPI = [];
+      const API = await axios({
+        method: "GET",
+        url: "https://member-intro.t-solution.vn/api/v2/pages/?fields=%2A&is_on_homepage=true&limit=3&type=blog.BlogDetailPage",
+      });
+      const API2 = await axios({
+        method: "GET",
+        url: "https://member-intro.t-solution.vn/api/v2/pages/?fields=%2A&is_on_homepage=true&limit=3&offset=3&type=blog.BlogDetailPage",
+      });
+      const tongAPI = API.data.items.concat(API2.data.items);
+      // tongAPI.push[API2];
+      // console.log("API2", API2.data.items);
+      // console.log("API", API.data.items);
+
+      console.log("newAPI", tongAPI);
+
+      setData(tongAPI);
+      setshowData(tongAPI.slice(0, 3));
+    } catch {
+      console.log("lỗi không lấy được API Tin Tức");
+    }
+  };
+  const layAPI2 = async () => {
+    try {
+      const API2 = await axios({
+        method: "GET",
+        url: "https://member-intro.t-solution.vn/api/v2/pages/?fields=%2A&is_on_homepage=true&limit=3&offset=3&type=blog.BlogDetailPage",
+      });
+      console.log("API2", API2.data.items[0]);
+      // setData(data.push(API2.data.items[0]));
+    } catch {
+      console.log("lỗi không lấy được API Tin Tức");
+    }
+  };
+
+  const renderAPINew = () => {
+    return showData?.map((item, index) => {
+      return (
+        <div key={index} className="new_box">
+          <div className="new_box_img">
+            <img src={item.thumbnail} />
+            <div className="new_box_date">31/03/2022</div>
+          </div>
+
+          <div className="new_box_text">
+            <h3>{item.title}</h3>
+            <p>{item.short_des}</p>
+            <h4>XEM THÊM</h4>
+          </div>
+        </div>
+      );
+    });
+  };
+  const chuyenTrang = (ok) => {
+    let arr = [];
+    for (let i = 1; i <= ok; i++) {
+      arr.push(i);
+    }
+    return arr.map((item, index) => {
+      return <button onClick={() => renderChuyenTrang(item)}>{item}</button>;
+    });
+  };
+
+  const renderChuyenTrang = (nut) => {
+    console.log("nut", nut);
+
+    let end = nut * soLuong;
+    console.log("end", end);
+    setshowData(data.slice(end - 3, end));
+  };
+
+  console.log("newAPI", data);
   return (
     <div className="new">
       <div className="new_title">
@@ -9,72 +94,8 @@ export default function New() {
         <p>Bài viết liên quan</p>
       </div>
       <dic className="new_item_content">
-        <div className="new_item">
-          <div className="new_box">
-            <div className="new_box_img">
-              <img
-                src="https://member-intro.t-solution.vn/media/original_images/bg-slider.jpg?w=3840&q=75"
-                alt=""
-              />
-              <div className="new_box_date">31/03/2022</div>
-            </div>
-
-            <div className="new_box_text">
-              <h3>Grow up your business successfully</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vestibulum a justo in felis iaculis volutpat quis euismod lacus.
-                Nulla sodales mauris vel dui ullamcorper, ultrices porta est
-                placerat. Ut metus nisi, fermentum vel mauris at, congue egestas
-                …
-              </p>
-              <h4>XEM THÊM</h4>
-            </div>
-          </div>
-          <div className="new_box">
-            <div className="new_box_img">
-              <img
-                src="https://member-intro.t-solution.vn/media/original_images/banner-privacy-policy-V2_jNRommR.jpg?w=3840&q=75"
-                alt=""
-              />
-              <div className="new_box_date">31/03/2022</div>
-            </div>
-
-            <div className="new_box_text">
-              <h3>Meet the business magnet of the year</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vestibulum a justo in felis iaculis volutpat quis euismod lacus.
-                Nulla sodales mauris vel dui ullamcorper, ultrices porta est
-                placerat. Ut metus nisi, fermentum vel mauris at, congue egestas
-                …
-              </p>
-              <h4>XEM THÊM</h4>
-            </div>
-          </div>
-
-          <div className="new_box">
-            <div className="new_box_img">
-              <img
-                src="https://member-intro.t-solution.vn/media/original_images/blog-1.jpg?w=3840&q=75"
-                alt=""
-              />
-              <div className="new_box_date">31/03/2022</div>
-            </div>
-
-            <div className="new_box_text">
-              <h3>Promote Your Apps With sApp</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vestibulum a justo in felis iaculis volutpat quis euismod lacus.
-                Nulla sodales mauris vel dui ullamcorper, ultrices porta est
-                placerat. Ut metus nisi, fermentum vel mauris at, congue egestas
-                …
-              </p>
-              <h4>XEM THÊM</h4>
-            </div>
-          </div>
-        </div>
+        <div className="new_item">{renderAPINew()}</div>
+        <div className="new_chuyentrang">{chuyenTrang(2)}</div>
       </dic>
     </div>
   );
