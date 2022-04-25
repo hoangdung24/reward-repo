@@ -1,0 +1,63 @@
+.dangky {
+    width: 100%;
+
+    h1 {
+        margin: 48px 0;
+        text-align: center;
+    }
+
+    .dangky_input {
+        width: 70%;
+        margin: 0 auto;
+        margin-bottom: 48px;
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid grey;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        button {
+            border: none;
+            box-shadow: 2px 4px 4px #88888862;
+            margin-bottom: 15px;
+            background-color: rgb(246, 203, 24);
+            border-radius: 5px;
+            padding: 10px;
+            transition: all 0.5s;
+
+
+            &:hover {
+                color: rgb(253, 240, 185);
+            }
+
+            p {
+                margin: 0;
+            }
+
+        }
+
+        .btnDangKy {
+            width: 100%;
+            border: none;
+            box-shadow: 2px 4px 4px #88888862;
+            margin-bottom: 15px;
+            background-color: rgb(246, 203, 24);
+            border-radius: 5px;
+            padding: 10px;
+            transition: all 0.5s;
+
+
+
+            &:hover {
+                color: rgb(253, 240, 185);
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+}

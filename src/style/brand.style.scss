@@ -1,0 +1,70 @@
+.brand {
+    width: 100%;
+    height: 418px;
+
+    .brand_background {
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+
+        img {
+            height: 418px;
+            width: 100%;
+        }
+
+
+    }
+
+    .brand_content {
+        padding: 64px 0;
+        width: 80%;
+        margin: 0 auto;
+
+        h2 {
+            font-size: 45px;
+            font-weight: 600;
+            text-align: center;
+            color: white;
+        }
+
+        .brand_slick {
+            .brand_slick2 {
+                .slick-slider {
+                    button {
+                        display: none !important;
+                    }
+
+                    .slick-list {
+                        .slick-track {
+                            .slick-slide {
+                                div {
+                                    .slick_box {
+                                        display: flex !important;
+
+                                        div {
+                                            width: 20%;
+
+                                            img {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        .slick-content {
+                                            background-color: white;
+
+                                            h4 {}
+
+                                            p {}
+
+                                            h3 {}
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
