@@ -7,7 +7,7 @@ export default function New() {
   const [showData, setshowData] = useState([]);
   const soLuong = 3;
   // let tong = data.length / 2;
-  console.log("render lai giao dien");
+  // console.log("render lai giao dien");
   useEffect(() => {
     layAPI();
     // layAPI2();
@@ -29,7 +29,7 @@ export default function New() {
       // console.log("API2", API2.data.items);
       // console.log("API", API.data.items);
 
-      console.log("newAPI", tongAPI);
+      // console.log("newAPI", tongAPI);
 
       setData(tongAPI);
       setshowData(tongAPI.slice(0, 3));
@@ -86,7 +86,7 @@ export default function New() {
     setshowData(data.slice(end - 3, end));
   };
 
-  console.log("newAPI", data);
+  // console.log("newAPI", data);
   return (
     <div className="new">
       <div className="new_title">

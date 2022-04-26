@@ -1,6 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import axios from "axios";
 
 export default function Footers() {
+  const [dkTT, setdkTT] = useState();
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email("Đây không phải là email")
+        .required("Không được bỏ trống ký tự"),
+    }),
+
+    onSubmit: (value) => {
+      setdkTT(value);
+      const dk = value;
+      console.log("objectvalue", dk);
+
+      axios
+        .post("https://member-intro.t-solution.vn/api/v2/subscribers/", dk, {
+          headers: {
+            Authorization: "Api-Key ubc9FYnH.brSNHwzFxNIZgehgQosDArgFe70dfigA",
+          },
+        })
+        .then((rss) => {
+          console.log(rss);
+          const tc = "tc";
+          box(tc);
+        })
+        .catch((err) => {
+          const tb = "tb";
+          console.log(err.response.data.message);
+          box(tb);
+        });
+    },
+  });
+
+  const box = (value) => {
+    if (value === "tc") {
+      const ok = document.getElementById("idthongbao");
+      const overley = document.getElementById("IDoverley");
+      ok.style.display = "flex";
+      overley.style.display = "block";
+    } else if (value === "tb") {
+      const ok = document.getElementById("idthongbao");
+      const btn = document.getElementById("btn");
+      const IDicon = document.getElementById("IDicon");
+      const overley = document.getElementById("IDoverley");
+      const idH3 = document.getElementById("idH3");
+      const idp = document.getElementById("idp");
+      overley.style.display = "block";
+      btn.style.backgroundColor = "red";
+      ok.style.display = "flex";
+      IDicon.innerHTML = `<i className="fas fa-money-check" />`;
+      idH3.innerText = `Thất Bại`;
+      idp.innerText = `Đăng ký thất bại`;
+      IDicon.style.color = "red";
+    }
+  };
   return (
     <div className="footer">
       <div className="footer_content">
@@ -82,10 +143,20 @@ export default function Footers() {
           </div>
           <div className="diachi_dangky">
             <h3>Đăng ký nhận thông tin</h3>
-            <div className="diachi_dangky_2">
-              <input type="text" placeholder="nadone@si.rw" />
+            <form onSubmit={formik.handleSubmit} className="diachi_dangky_2">
+              <input
+                placeholder="nadone@si.rw"
+                type="text"
+                name="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+              />
+
               <button>ĐĂNG KÝ</button>
-            </div>
+              {formik.errors.email && formik.touched.email && (
+                <p style={{ color: "red" }}>{formik.errors.email}</p>
+              )}
+            </form>
           </div>
         </div>
       </div>

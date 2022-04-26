@@ -5,6 +5,7 @@ import Footers from "../components/footer/Footers";
 import Header from "../components/header/Header";
 import Hero from "../components/Hero/Hero";
 import New from "../components/new/New";
+import ThongBao from "../components/thongbao/ThongBao";
 import User from "../components/User/User";
 import "../style/gobal.style.scss";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <New />
       <DangKy />
       <Footers />
+      <ThongBao />
     </div>
   );
 }

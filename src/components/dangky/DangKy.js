@@ -5,46 +5,84 @@ import axios from "axios";
 
 export default function DangKy() {
   const [vale, setVale] = useState("");
+  const API_KEY = "Api-Key ubc9FYnH.brSNHwzFxNIZgehgQosDArgFe70dfigA";
 
   const formik = useFormik({
     initialValues: {
-      ten: "",
-      nguoidaidien: "",
-      quanan: "",
-      mail: "",
-      taikhoan: "",
+      store_name: "",
+      presentator: "",
+      category: 2,
+      email: "",
+      bank_number: "",
       bank: "",
-      chubank: "",
-      chinhanh: "",
-      sdt: "",
+      owner: "",
+      branch: "",
+      phone: "",
+      files: "CV Front-End-PhanAnhPhi.pdf",
+      page: 6,
     },
 
     validationSchema: Yup.object({
-      ten: Yup.string()
+      store_name: Yup.string()
         .min(5, "Tên quá ngắn")
         .required("Không được bỏ trống ký tự"),
-      mail: Yup.string()
-        .email("Email không đúng")
+      email: Yup.string()
+        .email("Đây không phải là email")
         .required("Không được bỏ trống ký tự"),
-      nguoidaidien: Yup.string().required("Không được bỏ trống ký tự"),
-      sdt: Yup.string().required("Không được bỏ trống ký tự"),
-      nguoidaidien: Yup.string().required("Không được bỏ trống ký tự"),
-      taikhoan: Yup.string().required("Không được bỏ trống ký tự"),
+      presentator: Yup.string().required("Không được bỏ trống ký tự"),
+      phone: Yup.string().required("Không được bỏ trống ký tự"),
+      bank_number: Yup.string().required("Không được bỏ trống ký tự"),
       bank: Yup.string().required("Không được bỏ trống ký tự"),
-      chubank: Yup.string().required("Không được bỏ trống ký tự"),
-      chinhanh: Yup.string().required("Không được bỏ trống ký tự"),
+      owner: Yup.string().required("Không được bỏ trống ký tự"),
+      branch: Yup.string().required("Không được bỏ trống ký tự"),
     }),
 
     onSubmit: (value) => {
-      console.log("objectvalue", value);
       setVale(value);
-      axios({
-        url: "https://member-intro.t-solution.vn/api/v2/subscribers/",
-        method: "POST",
-        data: { value },
-      });
+      const vvv = value;
+      // console.log("objectvalue", vvv);
+
+      axios
+        .post("https://member-intro.t-solution.vn/api/v2/submissions/", vvv, {
+          headers: {
+            Authorization: "Api-Key ubc9FYnH.brSNHwzFxNIZgehgQosDArgFe70dfigA",
+          },
+        })
+        .then((rss) => {
+          console.log(rss);
+          const tc = "tc";
+          box(tc);
+        })
+        .catch((err) => {
+          const tb = "tb";
+          // console.log(err.response.data.message);
+          box(tb);
+        });
     },
   });
+
+  const box = (value) => {
+    if (value === "tc") {
+      const ok = document.getElementById("idthongbao");
+      const overley = document.getElementById("IDoverley");
+      ok.style.display = "flex";
+      overley.style.display = "block";
+    } else if (value === "tb") {
+      const ok = document.getElementById("idthongbao");
+      const btn = document.getElementById("btn");
+      const IDicon = document.getElementById("IDicon");
+      const overley = document.getElementById("IDoverley");
+      const idH3 = document.getElementById("idH3");
+      const idp = document.getElementById("idp");
+      overley.style.display = "block";
+      btn.style.backgroundColor = "red";
+      ok.style.display = "flex";
+      IDicon.innerHTML = `<i className="fas fa-money-check" />`;
+      idH3.innerText = `Thất Bại`;
+      idp.innerText = `Đăng ký thất bại`;
+      IDicon.style.color = "red";
+    }
+  };
   console.log("vale", vale);
   return (
     <form onSubmit={formik.handleSubmit} className="dangky">
@@ -53,29 +91,29 @@ export default function DangKy() {
         <input
           type="text"
           placeholder="Tên quán / thương hiệu"
-          name="ten"
-          value={formik.values.ten}
+          name="store_name"
+          value={formik.values.store_name}
           onChange={formik.handleChange}
         />
-        {formik.errors.ten && formik.touched.ten && (
-          <p style={{ color: "red" }}>{formik.errors.ten}</p>
+        {formik.errors.store_name && formik.touched.store_name && (
+          <p style={{ color: "red" }}>{formik.errors.store_name}</p>
         )}
 
         <input
           type="text"
           placeholder="Người đại diện"
-          name="nguoidaidien"
-          value={formik.values.nguoidaidien}
+          name="presentator"
+          value={formik.values.presentator}
           onChange={formik.handleChange}
         />
-        {formik.errors.nguoidaidien && formik.touched.nguoidaidien && (
-          <p style={{ color: "red" }}>{formik.errors.nguoidaidien}</p>
+        {formik.errors.presentator && formik.touched.presentator && (
+          <p style={{ color: "red" }}>{formik.errors.presentator}</p>
         )}
 
-        <select
+        {/* <select
           placeholder="Quán ăn"
-          name="quanan"
-          value={formik.values.quanan}
+          name="category"
+          value={formik.values.category}
           onChange={formik.handleChange}
           id="cars"
         >
@@ -86,39 +124,39 @@ export default function DangKy() {
           <option value="audi">Giải trí</option>
           <option value="audi">Quán cafe</option>
           <option value="audi">Quán ăn</option>
-        </select>
+        </select> */}
 
-        {/* <input
+        <input
           type="text"
           placeholder="Quán ăn"
-          name="quanan"
-          value={formik.values.quanan}
+          name="category"
+          value={formik.values.category}
           onChange={formik.handleChange}
-        /> */}
-        {formik.errors.quanan && formik.touched.quanan && (
-          <p style={{ color: "red" }}>{formik.errors.quanan}</p>
+        />
+        {formik.errors.category && formik.touched.category && (
+          <p style={{ color: "red" }}>{formik.errors.category}</p>
         )}
 
         <input
           type="email"
           placeholder="mail"
-          name="mail"
-          value={formik.values.mail}
+          name="email"
+          value={formik.values.email}
           onChange={formik.handleChange}
         />
-        {formik.errors.mail && formik.touched.mail && (
-          <p style={{ color: "red" }}>{formik.errors.mail}</p>
+        {formik.errors.email && formik.touched.email && (
+          <p style={{ color: "red" }}>{formik.errors.email}</p>
         )}
 
         <input
           type="text"
           placeholder="Số tài khoản ngân hàng"
-          name="taikhoan"
-          value={formik.values.taikhoan}
+          name="bank_number"
+          value={formik.values.bank_number}
           onChange={formik.handleChange}
         />
-        {formik.errors.taikhoan && formik.touched.taikhoan && (
-          <p style={{ color: "red" }}>{formik.errors.taikhoan}</p>
+        {formik.errors.bank_number && formik.touched.bank_number && (
+          <p style={{ color: "red" }}>{formik.errors.bank_number}</p>
         )}
 
         <input
@@ -135,34 +173,34 @@ export default function DangKy() {
         <input
           type="text"
           placeholder="Chủ tài khoản"
-          name="chubank"
-          value={formik.values.chubank}
+          name="owner"
+          value={formik.values.owner}
           onChange={formik.handleChange}
         />
-        {formik.errors.chubank && formik.touched.chubank && (
-          <p style={{ color: "red" }}>{formik.errors.chubank}</p>
+        {formik.errors.owner && formik.touched.owner && (
+          <p style={{ color: "red" }}>{formik.errors.owner}</p>
         )}
 
         <input
           type="text"
           placeholder="Chi nhánh"
-          name="chinhanh"
-          value={formik.values.chinhanh}
+          name="branch"
+          value={formik.values.branch}
           onChange={formik.handleChange}
         />
-        {formik.errors.chinhanh && formik.touched.chinhanh && (
-          <p style={{ color: "red" }}>{formik.errors.chinhanh}</p>
+        {formik.errors.branch && formik.touched.branch && (
+          <p style={{ color: "red" }}>{formik.errors.branch}</p>
         )}
 
         <input
           type="text"
           placeholder="Số điện thoại"
-          name="sdt"
-          value={formik.values.sdt}
+          name="phone"
+          value={formik.values.phone}
           onChange={formik.handleChange}
         />
-        {formik.errors.sdt && formik.touched.sdt && (
-          <p style={{ color: "red" }}>{formik.errors.sdt}</p>
+        {formik.errors.phone && formik.touched.phone && (
+          <p style={{ color: "red" }}>{formik.errors.phone}</p>
         )}
 
         <button>File đính kèm</button>
