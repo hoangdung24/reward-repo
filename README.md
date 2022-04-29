@@ -1,70 +1,19 @@
-# Getting Started with Create React App
+## Hiện tại em đã thiết kế lại page và hoàn thành một số yêu cầu của bài, em sẽ mô tả rõ hơn những gì em làm trong các REQUIREMENTS của bài test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+- Tổng thể: Website phải responsive: 
+   - Em dùng Bootrasp và css để có thể responsive cho web
 
-In the project directory, you can run:
+- Navbar: Thanh navbar có chứa anchor để điều hướng tới các phần tương ứng trong trang. Khi điều hướng tới các phần trong trang yêu cầu scroll có hiệu ứng smooth
+   - Em dùng dùng các thẻ <a> kết hợp với html{scroll-behavior: smooth} để tạo hi ứng scroll smooth.
 
-### `npm start`
+- Thương hiệu liên kết: có thể dùng dumb data để triển khai
+   - Về carousel, hiện tại em chưa code phần này nếu được em xin phép bổ sung sau.
+- Tin tức: fetch dữ liệu từ trên server với api như sau https://member-intro.t-solution.vn/api/v2/pages/?type=blog.BlogDetailPage&fields=*&limit=3&is_on_homepage=true
+   - Em dùng axios để gọi và lấy dữ liệu từ API sau đó render lên FE.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Đăng ký quán: Xác thực dữ liệu ở những trường có dấu * Reset form sau khi thực hiện thành công Phần đính kèm không bắt buộc Thêm loading khi đang gửi dữ liệu lên server (Không bắt buộc) Chèn thông báo nếu gửi thành công hoặc thất bại.
+    - Em dùng thư viện validator để có thể check email và sô điện thoại có hợp lệ không. Bên cạnh đó em còn có check các thông tin ở trường bắt buộc nhập         và hiện thị ra các thông báo cho khách hàng trong mỗi trường hợp.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Footer: Phần đăng ký nhận thông tin phải xác thực là email trước khi gửi lên server.
+    - Tương tự như trên em cũng dùng thư viện validator check email và xem trường này có trống không và thông báo đến khách hàng.
