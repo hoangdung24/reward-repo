@@ -4,6 +4,7 @@ import "../../style/header.style.scss";
 export default function Header() {
   return (
     <div className="header">
+      <i className="fas fa-bars" />
       <nav className="navbar navbar-expand-lg navbar-light ">
         <a className="navbar-brand" href="#">
           <img
@@ -11,17 +12,7 @@ export default function Header() {
             alt=""
           />
         </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon" />
-        </button>
+
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ">
             <li className="nav-item">
@@ -41,10 +32,14 @@ export default function Header() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link ">Tin tức</a>
+              <a className="nav-link " href="#NewBacktoTOp">
+                Tin tức
+              </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link ">Liên hệ</a>
+              <a className="nav-link" href="#ContactBacktoTOp">
+                Liên hệ
+              </a>
             </li>
           </ul>
           <button>Đăng Ký</button>

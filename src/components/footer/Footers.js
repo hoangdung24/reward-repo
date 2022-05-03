@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
+import { API_KEY } from "../../service/api-key/apiKey";
 
 export default function Footers() {
   const [dkTT, setdkTT] = useState();
@@ -24,7 +25,7 @@ export default function Footers() {
       axios
         .post("https://member-intro.t-solution.vn/api/v2/subscribers/", dk, {
           headers: {
-            Authorization: "Api-Key ubc9FYnH.brSNHwzFxNIZgehgQosDArgFe70dfigA",
+            Authorization: API_KEY,
           },
         })
         .then((rss) => {
@@ -63,7 +64,7 @@ export default function Footers() {
     }
   };
   return (
-    <div className="footer">
+    <div className="footer" id="ContactBacktoTOp">
       <div className="footer_content">
         <div className="logo">
           <img

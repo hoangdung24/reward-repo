@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
+import { API_KEY } from "../../service/api-key/apiKey";
 
 export default function DangKy() {
   const [vale, setVale] = useState("");
-  const API_KEY = "Api-Key ubc9FYnH.brSNHwzFxNIZgehgQosDArgFe70dfigA";
+  // const API_KEY = "Api-Key ubc9FYnH.brSNHwzFxNIZgehgQosDArgFe70dfigA";
 
   const formik = useFormik({
     initialValues: {
@@ -45,7 +46,7 @@ export default function DangKy() {
       axios
         .post("https://member-intro.t-solution.vn/api/v2/submissions/", vvv, {
           headers: {
-            Authorization: "Api-Key ubc9FYnH.brSNHwzFxNIZgehgQosDArgFe70dfigA",
+            Authorization: API_KEY,
           },
         })
         .then((rss) => {
@@ -83,7 +84,7 @@ export default function DangKy() {
       IDicon.style.color = "red";
     }
   };
-  console.log("vale", vale);
+  // console.log("vale", vale);
   return (
     <form onSubmit={formik.handleSubmit} className="dangky">
       <h1>Đăng ký quán thành viên</h1>

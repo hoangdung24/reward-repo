@@ -74,7 +74,11 @@ export default function New() {
       arr.push(i);
     }
     return arr.map((item, index) => {
-      return <button onClick={() => renderChuyenTrang(item)}>{item}</button>;
+      return (
+        <button key={index} onClick={() => renderChuyenTrang(item)}>
+          {item}
+        </button>
+      );
     });
   };
 
@@ -88,15 +92,15 @@ export default function New() {
 
   // console.log("newAPI", data);
   return (
-    <div className="new">
+    <div id="NewBacktoTOp" className="new">
       <div className="new_title">
         <h1>Tin Tức</h1>
         <p>Bài viết liên quan</p>
       </div>
-      <dic className="new_item_content">
+      <div className="new_item_content">
         <div className="new_item">{renderAPINew()}</div>
         <div className="new_chuyentrang">{chuyenTrang(2)}</div>
-      </dic>
+      </div>
     </div>
   );
 }
