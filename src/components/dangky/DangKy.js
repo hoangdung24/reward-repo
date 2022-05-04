@@ -3,10 +3,10 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
 import { API_KEY } from "../../service/api-key/apiKey";
+import Loading from "../loading/Loading";
 
 export default function DangKy() {
   const [vale, setVale] = useState("");
-  // const API_KEY = "Api-Key ubc9FYnH.brSNHwzFxNIZgehgQosDArgFe70dfigA";
 
   const formik = useFormik({
     initialValues: {
@@ -41,7 +41,8 @@ export default function DangKy() {
     onSubmit: (value) => {
       setVale(value);
       const vvv = value;
-      // console.log("objectvalue", vvv);
+      const onLoading = document.getElementById("idloading");
+      onLoading.style.display = "flex";
 
       axios
         .post("https://member-intro.t-solution.vn/api/v2/submissions/", vvv, {
@@ -50,13 +51,17 @@ export default function DangKy() {
           },
         })
         .then((rss) => {
+          const onLoading = document.getElementById("idloading");
+          onLoading.style.display = "none";
           console.log(rss);
           const tc = "tc";
           box(tc);
         })
         .catch((err) => {
+          const onLoading = document.getElementById("idloading");
+          onLoading.style.display = "none";
           const tb = "tb";
-          // console.log(err.response.data.message);
+          console.log(err.response.data.message);
           box(tb);
         });
     },
@@ -84,130 +89,119 @@ export default function DangKy() {
       IDicon.style.color = "red";
     }
   };
-  // console.log("vale", vale);
+
   return (
-    <form onSubmit={formik.handleSubmit} className="dangky">
-      <h1>Đăng ký quán thành viên</h1>
-      <div className="dangky_input">
-        <input
-          type="text"
-          placeholder="Tên quán / thương hiệu"
-          name="store_name"
-          value={formik.values.store_name}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.store_name && formik.touched.store_name && (
-          <p style={{ color: "red" }}>{formik.errors.store_name}</p>
-        )}
+    <>
+      <form onSubmit={formik.handleSubmit} className="dangky">
+        <div className="loading" id="idloading">
+          <Loading />
+        </div>
+        <h1>Đăng ký quán thành viên</h1>
+        <div className="dangky_input">
+          <input
+            type="text"
+            placeholder="Tên quán / thương hiệu"
+            name="store_name"
+            value={formik.values.store_name}
+            onChange={formik.handleChange}
+          />
+          {formik.errors.store_name && formik.touched.store_name && (
+            <p style={{ color: "red" }}>{formik.errors.store_name}</p>
+          )}
 
-        <input
-          type="text"
-          placeholder="Người đại diện"
-          name="presentator"
-          value={formik.values.presentator}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.presentator && formik.touched.presentator && (
-          <p style={{ color: "red" }}>{formik.errors.presentator}</p>
-        )}
+          <input
+            type="text"
+            placeholder="Người đại diện"
+            name="presentator"
+            value={formik.values.presentator}
+            onChange={formik.handleChange}
+          />
+          {formik.errors.presentator && formik.touched.presentator && (
+            <p style={{ color: "red" }}>{formik.errors.presentator}</p>
+          )}
 
-        {/* <select
-          placeholder="Quán ăn"
-          name="category"
-          value={formik.values.category}
-          onChange={formik.handleChange}
-          id="cars"
-        >
-          <option value="volvo">Quán ăn</option>
-          <option value="volvo">Automative</option>
-          <option value="saab">Baby & Toddler</option>
-          <option value="opel">Giáo dục</option>
-          <option value="audi">Giải trí</option>
-          <option value="audi">Quán cafe</option>
-          <option value="audi">Quán ăn</option>
-        </select> */}
+          <input
+            type="text"
+            placeholder="Quán ăn"
+            name="category"
+            value={formik.values.category}
+            onChange={formik.handleChange}
+          />
+          {formik.errors.category && formik.touched.category && (
+            <p style={{ color: "red" }}>{formik.errors.category}</p>
+          )}
 
-        <input
-          type="text"
-          placeholder="Quán ăn"
-          name="category"
-          value={formik.values.category}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.category && formik.touched.category && (
-          <p style={{ color: "red" }}>{formik.errors.category}</p>
-        )}
+          <input
+            type="email"
+            placeholder="mail"
+            name="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+          />
+          {formik.errors.email && formik.touched.email && (
+            <p style={{ color: "red" }}>{formik.errors.email}</p>
+          )}
 
-        <input
-          type="email"
-          placeholder="mail"
-          name="email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.email && formik.touched.email && (
-          <p style={{ color: "red" }}>{formik.errors.email}</p>
-        )}
+          <input
+            type="text"
+            placeholder="Số tài khoản ngân hàng"
+            name="bank_number"
+            value={formik.values.bank_number}
+            onChange={formik.handleChange}
+          />
+          {formik.errors.bank_number && formik.touched.bank_number && (
+            <p style={{ color: "red" }}>{formik.errors.bank_number}</p>
+          )}
 
-        <input
-          type="text"
-          placeholder="Số tài khoản ngân hàng"
-          name="bank_number"
-          value={formik.values.bank_number}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.bank_number && formik.touched.bank_number && (
-          <p style={{ color: "red" }}>{formik.errors.bank_number}</p>
-        )}
+          <input
+            type="text"
+            placeholder="Bank"
+            name="bank"
+            value={formik.values.bank}
+            onChange={formik.handleChange}
+          />
+          {formik.errors.bank && formik.touched.bank && (
+            <p style={{ color: "red" }}>{formik.errors.bank}</p>
+          )}
 
-        <input
-          type="text"
-          placeholder="Bank"
-          name="bank"
-          value={formik.values.bank}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.bank && formik.touched.bank && (
-          <p style={{ color: "red" }}>{formik.errors.bank}</p>
-        )}
+          <input
+            type="text"
+            placeholder="Chủ tài khoản"
+            name="owner"
+            value={formik.values.owner}
+            onChange={formik.handleChange}
+          />
+          {formik.errors.owner && formik.touched.owner && (
+            <p style={{ color: "red" }}>{formik.errors.owner}</p>
+          )}
 
-        <input
-          type="text"
-          placeholder="Chủ tài khoản"
-          name="owner"
-          value={formik.values.owner}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.owner && formik.touched.owner && (
-          <p style={{ color: "red" }}>{formik.errors.owner}</p>
-        )}
+          <input
+            type="text"
+            placeholder="Chi nhánh"
+            name="branch"
+            value={formik.values.branch}
+            onChange={formik.handleChange}
+          />
+          {formik.errors.branch && formik.touched.branch && (
+            <p style={{ color: "red" }}>{formik.errors.branch}</p>
+          )}
 
-        <input
-          type="text"
-          placeholder="Chi nhánh"
-          name="branch"
-          value={formik.values.branch}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.branch && formik.touched.branch && (
-          <p style={{ color: "red" }}>{formik.errors.branch}</p>
-        )}
+          <input
+            type="text"
+            placeholder="Số điện thoại"
+            name="phone"
+            value={formik.values.phone}
+            onChange={formik.handleChange}
+          />
+          {formik.errors.phone && formik.touched.phone && (
+            <p style={{ color: "red" }}>{formik.errors.phone}</p>
+          )}
 
-        <input
-          type="text"
-          placeholder="Số điện thoại"
-          name="phone"
-          value={formik.values.phone}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.phone && formik.touched.phone && (
-          <p style={{ color: "red" }}>{formik.errors.phone}</p>
-        )}
-
-        <button>File đính kèm</button>
-        <p>Lưu ý: File đính kèm không vượt quá 20Mb</p>
-        <button className="btnDangKy">ĐĂNG KÝ</button>
-      </div>
-    </form>
+          <button>File đính kèm</button>
+          <p>Lưu ý: File đính kèm không vượt quá 20Mb</p>
+          <button className="btnDangKy">ĐĂNG KÝ</button>
+        </div>
+      </form>
+    </>
   );
 }

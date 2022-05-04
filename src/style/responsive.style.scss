@@ -29,52 +29,11 @@
                 }
             }
 
-            .navbar-toggler {}
-
-            .collapse {
-                justify-content: flex-end;
-
-                .navbar-nav {
-                    .nav-item {
-                        .nav-link {
-                            color: rgb(246, 203, 24);
-                            transition: all 0.5s;
-                            text-transform: uppercase;
-                            font-family: 700;
-
-                            &:hover {
-                                opacity: 0.5;
-                            }
-                        }
-                    }
-                }
-
-                button {
-                    color: white;
-                    background-color: rgb(246, 203, 24);
-                    border: none;
-                    border-radius: 5px;
-                    padding: 5px 10px;
-                    transition: all 0.5s;
-
-                    &:hover {
-                        background-color: rgba(246, 202, 24, 0.695);
-                    }
-                }
-            }
         }
     }
 
     .hero {
-        width: 100%;
-        height: 752px;
-        position: relative;
-
         .hero-background {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
 
             img {
                 width: 100%;
@@ -90,25 +49,10 @@
             margin: 0 auto;
 
             h2 {
-                font-size: 40px;
+                font-size: 36px;
                 color: black;
             }
-
-            button {
-                font-size: 20px;
-                background-color: rgb(246, 203, 24);
-                padding: 6px 16px;
-                border-radius: 5px;
-                border: none;
-                transition: ease-in-out 0.5s;
-
-                &:hover {
-                    background-color: rgb(253, 240, 185);
-                }
-            }
         }
-
-
     }
 
     .user {
@@ -142,12 +86,10 @@
                     font-weight: 600;
                 }
 
-                p {}
             }
 
             .user_text__list {
                 width: 100%;
-
 
                 .user_text__list__content {
                     display: grid;
@@ -877,11 +819,7 @@
     .dangky {
         width: 100%;
 
-        h1 {
-            font-size: 31px;
-            margin: 17px 0;
-            text-align: center;
-        }
+
 
         .dangky_input {
             width: 80%;
@@ -900,54 +838,9 @@
                 margin-bottom: 15px;
             }
 
-            select {
-                width: 100%;
-                padding: 10px;
-                border: 1px solid grey;
-                margin-bottom: 15px;
-                border-radius: 5px;
-            }
-
-            button {
-                border: none;
-                box-shadow: 2px 4px 4px #88888862;
-                margin-bottom: 15px;
-                background-color: rgb(246, 203, 24);
-                border-radius: 5px;
-                padding: 10px;
-                transition: all 0.5s;
-
-
-                &:hover {
-                    background-color: rgb(253, 240, 185);
-                }
-
-                p {
-                    margin: 0;
-                }
-
-            }
-
-            .btnDangKy {
-                width: 100%;
-                border: none;
-                box-shadow: 2px 4px 4px #88888862;
-                margin-bottom: 15px;
-                background-color: rgb(246, 203, 24);
-                border-radius: 5px;
-                padding: 10px;
-                transition: all 0.5s;
 
 
 
-                &:hover {
-                    background-color: rgb(253, 240, 185);
-                }
-
-                p {
-                    margin: 0;
-                }
-            }
         }
     }
 

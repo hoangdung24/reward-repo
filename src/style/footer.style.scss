@@ -4,6 +4,24 @@
     height: 590px;
     background-color: rgb(246, 203, 24);
 
+    .loading {
+        width: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        img {
+            width: 18%;
+            height: 40%;
+        }
+    }
+
+
     .footer_content {
         width: 80%;
         margin: 30px auto;

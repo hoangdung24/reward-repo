@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
 import { API_KEY } from "../../service/api-key/apiKey";
+import Loading from "../loading/Loading";
 
 export default function Footers() {
   const [dkTT, setdkTT] = useState();
@@ -20,7 +21,8 @@ export default function Footers() {
     onSubmit: (value) => {
       setdkTT(value);
       const dk = value;
-      console.log("objectvalue", dk);
+      const onLoading = document.getElementById("idloading");
+      onLoading.style.display = "flex";
 
       axios
         .post("https://member-intro.t-solution.vn/api/v2/subscribers/", dk, {
@@ -29,11 +31,15 @@ export default function Footers() {
           },
         })
         .then((rss) => {
+          const onLoading = document.getElementById("idloading");
+          onLoading.style.display = "none";
           console.log(rss);
           const tc = "tc";
           box(tc);
         })
         .catch((err) => {
+          const onLoading = document.getElementById("idloading");
+          onLoading.style.display = "none";
           const tb = "tb";
           console.log(err.response.data.message);
           box(tb);
@@ -65,6 +71,9 @@ export default function Footers() {
   };
   return (
     <div className="footer" id="ContactBacktoTOp">
+      <div className="loading" id="idloading">
+        <Loading />
+      </div>
       <div className="footer_content">
         <div className="logo">
           <img

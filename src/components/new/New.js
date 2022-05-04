@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "../../style/new.style.scss";
+import Loading from "../loading/Loading";
 
 export default function New() {
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [showData, setshowData] = useState([]);
   const soLuong = 3;
@@ -25,14 +27,10 @@ export default function New() {
         url: "https://member-intro.t-solution.vn/api/v2/pages/?fields=%2A&is_on_homepage=true&limit=3&offset=3&type=blog.BlogDetailPage",
       });
       const tongAPI = API.data.items.concat(API2.data.items);
-      // tongAPI.push[API2];
-      // console.log("API2", API2.data.items);
-      // console.log("API", API.data.items);
-
-      // console.log("newAPI", tongAPI);
 
       setData(tongAPI);
       setshowData(tongAPI.slice(0, 3));
+      setLoading(false);
     } catch {
       console.log("lỗi không lấy được API Tin Tức");
     }
@@ -90,17 +88,22 @@ export default function New() {
     setshowData(data.slice(end - 3, end));
   };
 
-  // console.log("newAPI", data);
   return (
     <div id="NewBacktoTOp" className="new">
       <div className="new_title">
         <h1>Tin Tức</h1>
         <p>Bài viết liên quan</p>
       </div>
-      <div className="new_item_content">
-        <div className="new_item">{renderAPINew()}</div>
-        <div className="new_chuyentrang">{chuyenTrang(2)}</div>
-      </div>
+
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="new_item_content">
+          <div className="new_item">{renderAPINew()}</div>
+          {/* <img src="./gif/Spin-1.3s-201px.gif" alt="" /> */}
+          <div className="new_chuyentrang">{chuyenTrang(2)}</div>
+        </div>
+      )}
     </div>
   );
 }
